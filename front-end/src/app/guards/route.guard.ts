@@ -3,13 +3,14 @@ import { CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { StorageService, STORAGE_KEY } from '../services/storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RouteGuard implements CanLoad, CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private storageService: StorageService) {}
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.isAuthen();
   }
@@ -23,6 +24,8 @@ export class RouteGuard implements CanLoad, CanActivate {
     return of(this.authService.isAuthenticated()).pipe(
       tap(isAuth => {
         if (!isAuth) {
+          this.storageService.clearItem(STORAGE_KEY.user);
+          this.authService.userInfo$.next(null);
           this.router.navigate(['/sign-in']);
         }
       })
