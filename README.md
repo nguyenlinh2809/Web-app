@@ -1,7 +1,7 @@
 # Web-app
 
 User registration and login with Angular 11 and Nodejs
-
+Swich to master branch to git latest code
 ## Installation
 
 Start backend
