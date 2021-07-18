@@ -21,3 +21,10 @@ npm start
 ```
 
 Run application on localhost:4200
+
+To run Angular test
+
+```bash
+cd front-end
+npm test
+```
