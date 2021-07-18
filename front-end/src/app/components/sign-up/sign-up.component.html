@@ -1,0 +1,71 @@
+<div class="container wrapper p-0 register-frame">
+  <div class="d-flex justify-content-center">
+    <form class="col-md-6" [formGroup]="registerForm" id="register-form">
+        <h2>Registration Form</h2>
+        <div *ngIf="registerErr" class="alert alert-danger mt-4" role="alert">
+          {{ registerErr }}
+        </div>
+        <div class="form-group mt-4">
+          <label>Nickname:</label>
+          <input type="nickName" formControlName="nickName" class="form-control">
+          <div class="mt-1 text-danger">
+            <p id="required-nickName-err" *ngIf="registerForm?.get('nickName').hasError('required') && (registerForm?.get('nickName').touched || registerForm?.get('nickName').dirty)">Nickname is required!</p>
+            <p id="length-nickName-err" *ngIf="registerForm?.get('nickName').hasError('maxlength') && (registerForm?.get('nickName').touched || registerForm?.get('nickName').dirty)">
+              Max length 40 characters!
+            </p>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label>Password:</label>
+          <input type="password" formControlName="password" class="form-control">
+          <div class="mt-1 text-danger">
+            <p id="required-password-err" *ngIf="registerForm?.get('password').hasError('required') && (registerForm?.get('password').touched || registerForm?.get('password').dirty)">Password is required!</p>
+            <p id="length-password-err" *ngIf="registerForm?.get('password').hasError('maxlength') && (registerForm?.get('password').touched || registerForm?.get('password').dirty)">
+              Max length 40 characters!
+            </p>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label>Confirm Password:</label>
+          <input type="password" formControlName="confirmPassword" class="form-control">
+          <div class="mt-1 text-danger">
+            <p id="required-confirm-password-err" *ngIf="registerForm?.get('confirmPassword').hasError('required') && (registerForm?.get('confirmPassword').touched || registerForm?.get('confirmPassword').dirty)">Confirm password is required!</p>
+            <p id="not-match-err" *ngIf="!isMatchedPassword() && (registerForm?.get('confirmPassword').touched || registerForm?.get('confirmPassword').dirty)">Confirm password is not matched!</p>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label>Email:</label>
+          <input type="text" formControlName="email" class="form-control">
+          <div class="mt-1 text-danger">
+            <p id="required-email-err" *ngIf="registerForm?.get('email').hasError('required') && (registerForm?.get('email').touched || registerForm?.get('email').dirty)">Email is required!</p>
+            <p id="format-email-err" *ngIf="registerForm?.get('email').hasError('pattern') && (registerForm?.get('email').touched || registerForm?.get('email').dirty)">Email wrong format!</p>
+            <p id="length-email-err" *ngIf="registerForm?.get('email').hasError('maxlength') && (registerForm?.get('email').touched || registerForm?.get('email').dirty)">
+              Max length 40 characters!
+            </p>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label>Phone:</label>
+          <input type="phone" formControlName="phone" class="form-control" appNumberOnly>
+          <div class="mt-1 text-danger">
+            <p id="required-phone-err" *ngIf="registerForm?.get('phone').hasError('required') && (registerForm?.get('phone').touched || registerForm?.get('phone').dirty)">phone is required!</p>
+            <p id="format-phone-err" *ngIf="registerForm?.get('phone').hasError('pattern') && (registerForm?.get('phone').touched || registerForm?.get('phone').dirty)">phone wrong format!</p>
+            <p id="length-phone-err" *ngIf="registerForm?.get('phone').hasError('minlength') && (registerForm?.get('phone').touched || registerForm?.get('phone').dirty)">
+              Min length 10 characters!
+            </p>
+            <p id="length-phone-err" *ngIf="registerForm?.get('phone').hasError('maxlength') && (registerForm?.get('phone').touched || registerForm?.get('phone').dirty)">
+              Max length 15 characters!
+            </p>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label>Country:</label>
+          <select class="form-select" formControlName="country">
+            <option value="">Select your country</option>
+            <option *ngFor="let country of (listCountry$ | async)" [value]="country.code">{{ country.name }}</option>
+          </select>
+        </div>
+        <button [disabled]="registerForm?.invalid" type="submit" class="btn btn-primary float-right mt-4" (click)="registerAction()">Register</button>
+    </form>
+  </div>
+</div>

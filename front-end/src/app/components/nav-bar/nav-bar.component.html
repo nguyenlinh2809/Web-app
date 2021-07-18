@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-sm mb-0 top-bar container p-0">
+  <ul id="authen-action" class="nav navbar-nav ml-auto" *ngIf="!user">
+    <li><a routerLink="/sign-up" routerLinkActive="active-link"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+    <li><a routerLink="/sign-in" routerLinkActive="active-link"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+  </ul>
+  <ul id="authen-info" class="nav navbar-nav mr-auto" *ngIf="user">
+    <li class="nav-item dropdown">
+      <span class="font-weight-bold">Welcome:&#160;</span>
+      <span class="nick-name">{{ user.nickName }}</span>
+      <a class="dropdown-item" (click)="goToUpdateAccount(user.nickName)">Update account</a>
+    </li>
+  </ul>
+  <ul id="logout-action" class="nav navbar-nav" *ngIf="user">
+    <li><a (click)="logoutAction()" class="logout dropdown-item">Logout</a></li>
+  </ul>
+</nav>

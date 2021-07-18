@@ -1,0 +1,32 @@
+<div class="container wrapper p-0 login-frame">
+  <div class="d-flex justify-content-center">
+  <form class="col-md-6" [formGroup]="loginForm" id="login-form">
+      <h2>Login Form</h2>
+      <div *ngIf="loginErr" class="alert alert-danger mt-4" role="alert">
+        {{ loginErr }}
+      </div>
+      <div class="form-group mt-4">
+        <label>Username:</label>
+        <input type="text" formControlName="username" class="form-control">
+        <div class="mt-1 text-danger">
+          <p id="required-username-err" *ngIf="loginForm?.get('username').hasError('required') && (loginForm?.get('username').touched || loginForm?.get('username').dirty)">Username is required!</p>
+          <p id="length-username-err" *ngIf="loginForm?.get('username').hasError('maxlength') && (loginForm?.get('username').touched || loginForm?.get('username').dirty)">
+            Max length 40 characters!
+          </p>
+        </div>
+      </div>
+      <div class="form-group mt-4">
+        <label>Password:</label>
+        <input type="password" formControlName="password" class="form-control">
+        <div class="mt-1 text-danger">
+          <p id="required-password-err" *ngIf="loginForm?.get('password').hasError('required') && (loginForm?.get('password').touched || loginForm?.get('password').dirty)">Password is required!</p>
+        </div>
+      </div>
+      <div class="form-group mt-4">
+        <label>Remember me:</label>
+        <input type="checkbox" formControlName="rememberMe" class="checkbox form-check-input rememberMe">
+      </div>
+      <button [disabled]="loginForm?.invalid" type="submit" class="btn btn-primary float-right mt-4" (click)="loginAction()">Login</button>
+  </form>
+</div>
+</div>

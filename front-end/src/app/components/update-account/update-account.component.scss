@@ -1,0 +1,16 @@
+.update-frame {
+  // background-image:url('../../../assets/images/register-img.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 85vh;
+}
+.update-frame form{
+  background: #ffffff6b;
+  padding: 50px;
+  margin-top: 10%;
+
+  button {
+    padding: 5px 30px;
+  }
+}

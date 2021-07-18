@@ -1,0 +1,6 @@
+@import '../../../../styles/variables';
+
+.container {
+  height: calc(100vh - 44px);
+  background: $color-main;
+}

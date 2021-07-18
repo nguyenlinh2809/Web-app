@@ -1,0 +1,27 @@
+.login-frame {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 85vh;
+}
+.login-frame form {
+  background: #ffffff6b;
+  padding: 50px;
+  margin-top: 10%;
+
+  .checkbox {
+    margin-left: 5px;
+  }
+
+  button {
+    padding: 5px 30px;
+  }
+
+  .rememberMe {
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 667px) {
+    margin: 40% 10%;
+  }
+}
