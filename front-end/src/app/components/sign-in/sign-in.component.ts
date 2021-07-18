@@ -63,6 +63,8 @@ export class SignInComponent implements OnInit {
   rememberMe(user: UserLogin): void {
     if (user.rememberMe) {
       this.storageService.setItem(STORAGE_KEY.rememberUser, user);
+    } else {
+      this.storageService.clearItem(STORAGE_KEY.rememberUser);
     }
   }
 
